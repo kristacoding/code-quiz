@@ -29,6 +29,9 @@ var questionType = [
 
 
 // Assignment Code 
+var userQuestion;
+var userOptions;
+
 var startQuiz = document.getElementById("startQuiz");
 var startQuizBtn = document.getElementById("startquizbtn");
 
@@ -61,16 +64,6 @@ function quiz() {
     }, 1000);
 
 
-    // End Game
-    function showScore(){
-        clearInterval(timer);
-        var gameOver = document.createElement("h1");
-        gameOver.textContent("Game Over!");
-
-        var showScore = document.createElement("h2");
-        showScore.textContent("You got a score of " + timerLeft )
-    }
-
     // clear contents
 
     startQuiz.style.display = 'none';
@@ -78,14 +71,18 @@ function quiz() {
 
     // Loop through array of questions
     for (let i = 0; i < questionType.length; i++) {
-        var userQuestion = questionType[i].question;
-        var userOptions = questionType[i].options;
+        userQuestion = questionType[i].question;
+        userOptions = questionType[i].options;
 
         console.log(userQuestion);
         console.log(userOptions);
 
-        userQuestion.forEach(buildQuestion());
-        userOptions.forEach(buildOptions());
+    
+        questionType.forEach(userQuestion => {buildQuestion()   
+        });
+
+        questionType.forEach(userOptions => {buildOptions()  
+        });
 
 
     }
@@ -101,14 +98,17 @@ function buildQuestion() {
 
 // Building the answers
 function buildOptions() {
-    var listCreate = document.createElement("ul");
-    var formatOptions = document.createElement("li");
-    var listButtons = document.createElement("button");
-    listButtons.textContent = userOptions; 
-   
-    userQuestion.appendChild(listCreate);
-    formatOptions.append(listButtons);
-    listButtons.addEventListener("click", (compare()));
+    for (let i = 0; i < questionType.options.length; i++) {
+        var listCreate = document.createElement("ul");
+        var formatOptions = document.createElement("li");
+        var listButtons = document.createElement("button");
+        listButtons.textContent = userOptions;
+
+        quizLayout.append(listCreate);
+        listCreate.append(formatOptions)
+        formatOptions.append(listButtons);
+        listButtons.addEventListener("click", (compare()));
+    }
 }
 
 function compare() {
