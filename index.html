@@ -33,19 +33,32 @@
     </div>
   </div>
 
-  <!--Quiz Layout-->
-  <div id="quizLayout">
-    <h1 id="nameQuestion" class="startQuiz"></h1>
-  </div>
+  <main class = "container">
+    <!--Quiz Layout-->
+    <div id="quizLayout">
+      <h1 id="nameQuestion" class="startQuiz"></h1>
+    </div>
 
-   <!--Quiz Final-->
-   <div id="quizFinal">
-  </div>
+    <div id="questioncard">
+      <div id="optionLayout" class = "hide">
+        <h1 id = "questionTitle"></h1>
+        <button id="optionA" class="btn btn-outline-info"></button>
+        <button id="optionB" class="btn btn-outline-info"></button>
+        <button id="optionC" class="btn btn-outline-info"></button>
+        <button id="optionD" class="btn btn-outline-info"></button>
+      </div>
+      <div id="results"></div>
+    </div>
 
+    <!--Quiz Final-->
+    <div id="quizFinal">
+    </div>
+  </main>
 
   <!-- JavaScript -->
   <script src="questions.js"></script>
   <script src="quiz.js"></script>
+
 </body>
 
 </html>
