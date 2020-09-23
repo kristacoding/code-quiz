@@ -20,13 +20,13 @@ var optionLayout = document.getElementById("optionLayout");
 var results = document.getElementById("results");
 
 var timer = document.getElementById("timer");
-var timeLeft = 60;
+var timeLeft = 75;
 var timestart = 0;
 var penalty = 10;
 
 
 // Timer
-function timer() {
+function startTimer() {
 
     var timerInterval = setInterval(function () {
         timeLeft--;
@@ -55,7 +55,7 @@ function questionAsked() {
 
 function quiz() {
     //starting the timer and quiz
-    timer();
+    startTimer();
     // clear contents
     startQuiz.style.display = 'none';
     optionLayout.classList.remove("hide");
@@ -65,7 +65,7 @@ function quiz() {
 
 
 function compare() {
-    var correctAnswer = document.getElementById(questionType[questionIndex].answer);
+    var correctAnswer = questionType[questionIndex].answer;
     console.log(correctAnswer)
     // comparing choice to correct answer
 
