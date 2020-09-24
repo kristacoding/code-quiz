@@ -11,6 +11,9 @@ Starting with the basic HTML and Bootstrap CSS, I created a quiz page that promp
 
 Additionally, once the start button is clicked, questions and answer in the form of buttons will start to appear on the screen. These new questions were created using a baseline format in HTML and updating each question and answer in Javascript. By adding the questions, options and answers into an array, I was then able to create a javascript the filtered through each question after they were answered. 
 
-Once you click an answer, it will tell you if it is right or wrong. If it is correct, you will move to the next question. If it is incorrect, you will lose 10 seconds but be able to pick another answer. To create this, I used an if/else statement and referred to the users choice by using this.id. 
+Once you click an answer, it will tell you if it is right or wrong. If it is correct, you will move to the next question. If it is incorrect, you will lose 10 seconds but be able to pick another answer. Finally, at the end of the quiz, you are able to submit your name for a top score. This score will then be saved to the Local Storage, and you should be able to find it again on the Highscores page. 
 
-Finally, at the end of the quiz, you are able to submit your name for a top score.  
+Pictures: 
+Homepage -
+<img href="https://1drv.ms/u/s!AiHjcdKLh6idg0dyPKtKWYw7hqsB?e=kWhRis" alt="Coding Quiz homepage">
+

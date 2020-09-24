@@ -17,6 +17,7 @@ var optionB = document.querySelector("#optionB");
 var optionC = document.querySelector("#optionC");
 var optionD = document.querySelector("#optionD");
 var optionLayout = document.getElementById("optionLayout");
+console.log(optionLayout);
 var results = document.getElementById("results");
 
 var timer = document.getElementById("timer");
@@ -24,7 +25,9 @@ var timeLeft = 75;
 var timestart = 0;
 var penalty = 10;
 
-
+startQuiz.style.display = "block";
+optionLayout.style.display = "none";
+endGame.style.display="none";
 
 // Timer
 function startTimer() {
@@ -59,11 +62,12 @@ function questionAsked() {
 // Function to prompt questions
 
 function quiz() {
+    console.log("test");
     //starting the timer and quiz
     startTimer();
     // clear contents
-    startQuiz.classList.add("hide");
-    optionLayout.classList.remove("hide");
+    startQuiz.style.display = "none";
+    optionLayout.style.display = "block";
     questionAsked();
     saveHighscore();
 
@@ -90,6 +94,9 @@ function compare() {
     }
     // moving to next question
     questionIndex++;
+    var score = timeLeft;
+    console.log("score"); 
+    results.textContent = "";
     questionAsked();
     console.log(questionIndex);
 }
@@ -120,7 +127,7 @@ optionD.addEventListener("click", function () {
 
 
 // Add event listener to start quiz 
-startQuizBtn.addEventListener("click", quiz());
+startQuizBtn.addEventListener("click", quiz);
 
 
 // Highscore Javascript
@@ -130,25 +137,27 @@ var leaders = [];
 var leaderList = document.getElementById("leader-list");
 var submitButton = document.getElementById("submit-button");
 var scoreInput = document.getElementById("score-input");
-var name = document.getElementById("score-name");
+var scoreName = document.getElementById("score-name");
 
-var endGame = document.getElementById("endgame");
+var endGame = document.getElementById("endGame");
 var finalScore = document.getElementById("finalScore");
 var name = document.getElementById("name");
 var submitBtn = document.getElementById("submitBtn");
 
-function saveHighscore (){
+endGame.style.display="none";
+
+function saveScore (){
     startQuiz.classList.add("hide");
     optionLayout.classList.add("hide");
     endGame.classList.remove("hide");
 
     var name = name.value.trim();
 
-    if(initials !== "") {
+    if (name !== "") {
         var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
         var newScore = {
-            score: timeleft,
+            score: timeLeft,
             name: name,
         };
 
@@ -161,10 +170,14 @@ function saveHighscore (){
 
 function checkForEnter(event){
     if (event.key === "enter"){
-        saveHighscore();
+        saveScore();
     }
 }
+
+
 // click button to save high score
-submitBtn.onclick = saveHighscore();
+submitBtn.onclick = saveScore;
 
 name.onkeyup = checkForEnter;
+
+submitButton.onclick = saveScore;

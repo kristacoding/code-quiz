@@ -38,6 +38,6 @@ var questionType = [
         optionB: "Booleans", 
         optionC: "Alerts", 
         optionD: "Strings",
-        answer: "Alerts",
+        answer: "Alerts"
     }
 ];
