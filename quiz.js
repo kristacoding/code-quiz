@@ -2,7 +2,7 @@
 var userQuestion;
 var userOptions;
 var questionIndex = 0;
-var choice = 0;
+var choice;
 var score = 0;
 var highscore = 0;
 
@@ -25,6 +25,7 @@ var timestart = 0;
 var penalty = 10;
 
 
+
 // Timer
 function startTimer() {
 
@@ -34,7 +35,7 @@ function startTimer() {
 
         if (timeLeft === 0) {
             clearInterval(timerInterval);
-            showScore();
+            endGame();
             timer.textContent = "Time's Up!"
         } else if (questionIndex > 4) {
             clearInterval(timerInterval);
@@ -46,9 +47,13 @@ function startTimer() {
 function questionAsked() {
     questionTitle.innerHTML = questionType[questionIndex].question;
     optionA.innerHTML = questionType[questionIndex].optionA;
+    optionA.setAttribute("value", questionType[questionIndex].optionA);
     optionB.innerHTML = questionType[questionIndex].optionB;
+    optionB.setAttribute("value", questionType[questionIndex].optionB);
     optionC.innerHTML = questionType[questionIndex].optionC;
+    optionC.setAttribute("value", questionType[questionIndex].optionC);
     optionD.innerHTML = questionType[questionIndex].optionD;
+    optionD.setAttribute("value", questionType[questionIndex].optionD);
 }
 
 // Function to prompt questions
@@ -57,9 +62,10 @@ function quiz() {
     //starting the timer and quiz
     startTimer();
     // clear contents
-    startQuiz.style.display = 'none';
+    startQuiz.classList.add("hide");
     optionLayout.classList.remove("hide");
     questionAsked();
+    saveHighscore();
 
 }
 
@@ -76,37 +82,89 @@ function compare() {
     }
     else {
         timeLeft -= 10;
+        if (timeleft <= 0){
+           saveHighscore();
+        } 
         timer.textContent = timeLeft;
         results.textContent = "Incorrect, please try again!";
     }
     // moving to next question
     questionIndex++;
+    questionAsked();
     console.log(questionIndex);
 }
+
 
 // Execution
 //Event listeners for each answer choice button
 optionA.addEventListener("click", function () {
-    choice = this.id;
+    choice = this.value;
     console.log(choice);
     compare();
 });
 optionB.addEventListener("click", function () {
-    choice = this.id;
+    choice = this.value;
     console.log(choice);
     compare();
 });
 optionC.addEventListener("click", function () {
-    choice = this.id;
+    choice = this.value;
     console.log(choice);
     compare();
 });
 optionD.addEventListener("click", function () {
-    choice = this.id;
+    choice = this.value;
     console.log(choice);
     compare();
 });
 
 
 // Add event listener to start quiz 
-startQuizBtn.addEventListener("click", quiz);
+startQuizBtn.addEventListener("click", quiz());
+
+
+// Highscore Javascript
+
+var score = document.getElementById("score");
+var leaders = [];
+var leaderList = document.getElementById("leader-list");
+var submitButton = document.getElementById("submit-button");
+var scoreInput = document.getElementById("score-input");
+var name = document.getElementById("score-name");
+
+var endGame = document.getElementById("endgame");
+var finalScore = document.getElementById("finalScore");
+var name = document.getElementById("name");
+var submitBtn = document.getElementById("submitBtn");
+
+function saveHighscore (){
+    startQuiz.classList.add("hide");
+    optionLayout.classList.add("hide");
+    endGame.classList.remove("hide");
+
+    var name = name.value.trim();
+
+    if(initials !== "") {
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+        var newScore = {
+            score: timeleft,
+            name: name,
+        };
+
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+        window.location.href = "highscore.html";
+    }
+}
+
+function checkForEnter(event){
+    if (event.key === "enter"){
+        saveHighscore();
+    }
+}
+// click button to save high score
+submitBtn.onclick = saveHighscore();
+
+name.onkeyup = checkForEnter;

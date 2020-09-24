@@ -33,15 +33,11 @@
     </div>
   </div>
 
-  <main class = "container">
-    <!--Quiz Layout-->
-    <div id="quizLayout">
-      <h2 id="nameQuestion" class="startQuiz"></h2>
-    </div>
-
-    <div id="questioncard" class = "startquiz">
-      <div id="optionLayout" class = "hide">
-        <h2 id = "questionTitle"></h2>
+  <!--Quiz-->
+  <main class="container">
+    <div id="optionsLayout" class="startquiz" class="hide">
+      <div id="questionsTitle">
+        <h2 id="questionTitle"></h2>
         <br>
         <button id="optionA" class="btn btn-outline-info"></button>
         <button id="optionB" class="btn btn-outline-info"></button>
@@ -53,7 +49,11 @@
     </div>
 
     <!--Quiz Final-->
-    <div id="quizFinal">
+    <div id="endGame" class="startquiz" class="hide" >
+      <h2>Congratulations you completed the Coding Quiz!</h2>
+      <p>Your final score is <span id=finalScore"></span></p>
+      <p>Enter your name: <input tpye="text" id="name">
+        <button id="submitBtn">Submit</button></p>
     </div>
   </main>
 

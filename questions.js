@@ -6,7 +6,7 @@ var questionType = [
         optionB: "Curly Brackets", 
         optionC: "Parentheses", 
         optionD: "Square Brackets",
-        answer: "Parenthese",
+        answer: "Parentheses",
     },
     {
         question: "Arrays in JavaScript can be used to store _____.",
