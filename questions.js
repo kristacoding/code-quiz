@@ -32,7 +32,7 @@ var questionType = [
         optionD: "For Loops",
         answer: "Console Log",
     },
-    {
+  {
         question: "Commonly used data types do not include: _______",
         optionA: "Numbers", 
         optionB: "Booleans", 

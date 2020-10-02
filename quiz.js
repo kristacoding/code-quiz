@@ -3,8 +3,8 @@ var userQuestion;
 var userOptions;
 var questionIndex = 0;
 var choice;
-var score = 0;
-var highscore = 0;
+//var score = 0;
+//var highscore = 0;
 
 var startQuiz = document.getElementById("startQuiz");
 var startQuizBtn = document.getElementById("startquizbtn");
@@ -29,7 +29,7 @@ var endGame = document.getElementById("endGame");
 
 startQuiz.style.display = "block";
 optionLayout.style.display = "none";
-endGame.style.display="none";
+endGame.style.display = "none";
 
 // Timer
 function startTimer() {
@@ -39,11 +39,10 @@ function startTimer() {
         timer.textContent = timeLeft;
 
         if (timeLeft === 0) {
+            timer.textContent = "Time's Up!";
             clearInterval(timerInterval);
-            endGame();
-            timer.textContent = "Time's Up!"
         } else if (questionIndex > 4) {
-            clearInterval(timerInterval);
+            saveScore();
         }
     }, 1000);
 }
@@ -70,8 +69,9 @@ function quiz() {
     // clear contents
     startQuiz.style.display = "none";
     optionLayout.style.display = "block";
+    endGame.style.display = "none";
     questionAsked();
-    saveHighscore();
+    saveScore();
 
 }
 
@@ -82,22 +82,20 @@ function compare() {
     // comparing choice to correct answer
 
     if (choice === correctAnswer) {
-        score++;
-        console.log(score);
-        results.textContent = "Correct!"
+        console.log("Correct!");
     }
     else {
         timeLeft -= 10;
-        if (timeleft <= 0){
-           saveHighscore();
-        } 
+        if (timeleft = 0) {
+            saveScore();
+        }
         timer.textContent = timeLeft;
-        results.textContent = "Incorrect, please try again!";
     }
+
     // moving to next question
     questionIndex++;
     var score = timeLeft;
-    console.log("score"); 
+    console.log(score);
     results.textContent = "";
     questionAsked();
     console.log(questionIndex);
@@ -146,15 +144,19 @@ var finalScore = document.getElementById("finalScore");
 var name = document.getElementById("name");
 var submitBtn = document.getElementById("submitBtn");
 
-endGame.style.display="none";
+endGame.style.display = "none";
 
-function saveScore (){
+function saveScore() {
     startQuiz.classList.add("hide");
     optionLayout.classList.add("hide");
     endGame.classList.remove("hide");
 
-    var name = name.value.trim();
+    finalScore.append(timeLeft);
 
+    //var name = name.value.trim();
+}
+
+function highscore() {
     if (name !== "") {
         var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
@@ -168,18 +170,17 @@ function saveScore (){
 
         window.location.href = "highscore.html";
     }
-}
 
-function checkForEnter(event){
-    if (event.key === "enter"){
-        saveScore();
+    function checkForEnter(event) {
+        if (event.key === "enter") {
+            saveScore();
+        }
     }
+
 }
-
-
 // click button to save high score
 submitBtn.onclick = saveScore;
 
 name.onkeyup = checkForEnter;
 
-submitButton.onclick = saveScore;
+//submitButton.onclick = saveScore;
