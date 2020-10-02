@@ -5,15 +5,25 @@
 
 # Description 
 
-Page URL: https://kristacoding.github.io/code-quiz/
+Homepage Page URL: https://kristacoding.github.io/code-quiz/
+Highscore Page URL: https://kristacoding.github.io/code-quiz/highscore.html 
 
-Starting with the basic HTML and Bootstrap CSS, I created a quiz page that prompts the user to start the coding quiz. It also has a link to the highscore page in the left hand corner and a timer in the top right hand corner. Once the start button is pushed, the timer using its own timer function, will start to count down and either continue to count down normally, or decrease 10 seconds if an incorrect answer is clicked. 
+The homepage starts with basic HTML and Bootstrap CSS to create a quiz of 5 question and gives the user a score at the end. On the homepage, there is a highscores button in the upper lefthand corner that takes the user to another page, and on the righthand corner, there is a timer that tracks how long it takes for the user to complete the quiz. This timer is also used as the score throughout this application. 
 
-Additionally, once the start button is clicked, questions and answer in the form of buttons will start to appear on the screen. These new questions were created using a baseline format in HTML and updating each question and answer in Javascript. By adding the questions, options and answers into an array, I was then able to create a javascript the filtered through each question after they were answered. 
+Using Javascript, we are then able to create a series of questions that the user is prompted to move through once clicking the start button. To create the questions, I built a base question outline that each individual question is then filtered through using a question array. The question array is stored in a separate javascript just to keep the coding and elements simple. 
 
-Once you click an answer, it will tell you if it is right or wrong. If it is correct, you will move to the next question. If it is incorrect, you will lose 10 seconds but be able to pick another answer. Finally, at the end of the quiz, you are able to submit your name for a top score. This score will then be saved to the Local Storage, and you should be able to find it again on the Highscores page. 
+When an answer is clicked, it moves to another question. If the correct answer is clicked, no time is lost but if an incorrect answer is clicked, 10 seconds are decreased. This is created using an if/else statement that allows for the two different outcomes. 
 
-Pictures: 
-Homepage -
-<img href="https://1drv.ms/u/s!AiHjcdKLh6idg0dyPKtKWYw7hqsB?e=kWhRis" alt="Coding Quiz homepage">
+Finally, at the end of the quiz, you will be prompted with your score and the opportunity to save it as a highscore. Your score and name will then be saved to local storage, where it can then be pulled to show in the highscores html. 
 
+## Skills 
+    - HTML
+    - CSS
+    - JavaScript
+
+
+## Pictures: 
+
+Homepage - <img src="https://nepseq.dm.files.1drv.com/y4mU7KNYTX9HJ35ZAFU_QFEsSfOLsy4qOgjLpsxNNK27IpaVec1Zo9plxzwvuurbxOS47vexx5M2LorK8J7wszWIhnMsrdFJ65d-u4_TNyTOE50BOntXJb7opdVB-OOxw0AEKTUMdk7reHT9mJE5qsuxOvW3MAzgK1mCOgOLphruca5Vxa-GESnO6_lfE4KHOrT-nBxhtUcw1rJVV1llxwIug?width=1910&height=888&cropmode=none"></img>
+
+Highscore - <img src="https://neo91w.dm.files.1drv.com/y4m0dKS0B-2TUb48x7PHWG_CkY9b_peeBfO2Kt7CNvTN6YP4mDyGZ8TaCWIF1IWYxB1MY9nbzEDL1FmgLPuinw7vE-vDAm_fZnbLbcXYRNs6YfUBZtf1JcLm-_xor0j0Wk-1E8zDHHJ8av9QLAB9-ftc3HtFQelpgdmfbtz74a2Cz3jRyNUpW0JTHSwi2HGi0el2FAkWSF63KgxwIdfED595w?width=1902&height=899&cropmode=none"></img>

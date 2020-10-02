@@ -3,7 +3,7 @@ var userQuestion;
 var userOptions;
 var questionIndex = 0;
 var choice;
-//var score = 0;
+var score = 0;
 //var highscore = 0;
 
 var startQuiz = document.getElementById("startQuiz");
@@ -42,8 +42,11 @@ function startTimer() {
             timer.textContent = "Time's Up!";
             clearInterval(timerInterval);
         } else if (questionIndex > 4) {
+            clearInterval(timerInterval);
             saveScore();
         }
+
+
     }, 1000);
 }
 
@@ -71,7 +74,7 @@ function quiz() {
     optionLayout.style.display = "block";
     endGame.style.display = "none";
     questionAsked();
-    saveScore();
+    //saveScore();
 
 }
 
@@ -128,7 +131,50 @@ optionD.addEventListener("click", function () {
 
 // Add event listener to start quiz 
 startQuizBtn.addEventListener("click", quiz);
+var finalScore = document.getElementById("finalScore");
+var userName = document.getElementById("userName");
+var submitBtn = document.getElementById("submitBtn");
 
+endGame.style.display = "none";
+
+function saveScore() {
+    startQuiz.style.display = "none";
+    optionLayout.style.display = "none";
+    endGame.style.display = "block";
+    var score = timeLeft;
+    finalScore.append(score);
+}
+
+submitBtn.addEventListener("click", function () {
+    console.log(userName);
+    
+    if (userName === null){
+        console.log("No value Entered");
+    }
+    else {
+        var finalScore = {
+            userName: userName,
+            score: score,
+        }
+        console.log(finalScore);
+        var allScores = localStorage.getItem("allScores");
+        if (allScores === null) {
+            allScores - [];
+        } else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(finalScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+        //
+        window.location.replace("./Highscore.html");
+    }
+
+
+
+})
+
+//var name = name.value.trim();
 
 // Highscore Javascript
 
@@ -138,23 +184,6 @@ var leaderList = document.getElementById("leader-list");
 var submitButton = document.getElementById("submit-button");
 var scoreInput = document.getElementById("score-input");
 var scoreName = document.getElementById("score-name");
-
-
-var finalScore = document.getElementById("finalScore");
-var name = document.getElementById("name");
-var submitBtn = document.getElementById("submitBtn");
-
-endGame.style.display = "none";
-
-function saveScore() {
-    startQuiz.classList.add("hide");
-    optionLayout.classList.add("hide");
-    endGame.classList.remove("hide");
-
-    finalScore.append(timeLeft);
-
-    //var name = name.value.trim();
-}
 
 function highscore() {
     if (name !== "") {
@@ -181,6 +210,6 @@ function highscore() {
 // click button to save high score
 submitBtn.onclick = saveScore;
 
-name.onkeyup = checkForEnter;
+//name.onkeyup = checkForEnter;
 
 //submitButton.onclick = saveScore;
