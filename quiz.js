@@ -25,6 +25,8 @@ var timeLeft = 75;
 var timestart = 0;
 var penalty = 10;
 
+var endGame = document.getElementById("endGame");
+
 startQuiz.style.display = "block";
 optionLayout.style.display = "none";
 endGame.style.display="none";
@@ -139,7 +141,7 @@ var submitButton = document.getElementById("submit-button");
 var scoreInput = document.getElementById("score-input");
 var scoreName = document.getElementById("score-name");
 
-var endGame = document.getElementById("endGame");
+
 var finalScore = document.getElementById("finalScore");
 var name = document.getElementById("name");
 var submitBtn = document.getElementById("submitBtn");
